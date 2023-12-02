@@ -20,7 +20,7 @@ poetry add dagster dagster-webserver dagster-embedded-elt
 
 Install `dagster-embedded-elt` v0.21.10 will also install `sling` ^v1.0.0.`
 
-As of 2023-11-30, there is `urllib3` ^v2.0 is not supported by `dagster`. We need to pin it to v1.26.15 by
+As of 2023-11-30, `urllib3` ^v2.0 is not supported by `dagster`. We need to pin it to v1.26.15 by
 
 ```{bash}
 poetry add urllib3==1.26.15 requests-toolbelt==0.10.1
@@ -32,10 +32,17 @@ poetry add urllib3==1.26.15 requests-toolbelt==0.10.1
 - `resources.py` contains the database connection
 - `assets.py` contains the data assets to be extracted and loaded
 
-5. Run Dagster with
+5. Register the directory `pipeline` in `pyproject.toml` for Dagster
+
+```
+[tool.dagster]
+module_name = "pipeline"
+```
+
+6. Run Dagster with
 
 ```{bash}
 poetry run dagster dev
 ```
 
-6. Explore the Dagster UI at http://localhost:3000
+7. Explore the Dagster UI at http://localhost:3000
